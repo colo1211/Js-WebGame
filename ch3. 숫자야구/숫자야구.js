@@ -42,10 +42,10 @@ var not_correct=0; // 틀린 횟수
 
 폼.addEventListener('submit',function callback(situation){ // 비동기: 언제 실행 될 지 모름
     situation.preventDefault();
-    // console.log('답 배열:',숫자배열);
+    console.log('답 배열:',숫자배열);
     var 사용자_답= 입력창.value;
     // 답이 맞을때
-    if ( 숫자배열 === 사용자_답.split('')) {
+    if (숫자배열.join('') === 사용자_답) {
         결과.textContent = '홈런';
         입력창.value = '';
         입력창.focus();
