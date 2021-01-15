@@ -11,9 +11,9 @@ var 줄들 = []; // 화면상 보이는 배열과 시뮬레이트 , 모든 줄�
 var 턴= 'X';
 
 var 콜백 = function 콜백함수(이벤트){
-    // console.log(이벤트.target); // 클릭 할 시, 콘솔창에 td를 출력해준다. (칸)
-    // console.log(이벤트.target.parentNode); // 클릭한 Element의 부모노드를 출력해준다. (줄)
-    // console.log(이벤트.target.parentNode.parentNode); // (테이블)
+    console.log(이벤트.target); // 클릭 할 시, 콘솔창에 td를 출력해준다. (칸)
+    console.log(이벤트.target.parentNode); // 클릭한 Element의 부모노드를 출력해준다. (줄)
+    console.log(이벤트.target.parentNode.parentNode); // (테이블)
 
     var 클릭된_줄= 줄들.indexOf(이벤트.target.parentNode); // 사용자가 클릭한 줄을 var 클릭된_줄 에 저장한다.
     console.log('클릭된_줄:',클릭된_줄);
