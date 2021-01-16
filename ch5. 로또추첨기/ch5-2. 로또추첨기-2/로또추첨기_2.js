@@ -11,6 +11,7 @@ while(후보군.length>0) {
 }
 // console.log(셔플);
 
+//당첨번호에 정렬하는 함수를 추가
 var 당첨번호 = 셔플.slice(0,6).sort(function (a,b){return a-b;}); // 0부터 5까지 총 6개의 숫자를 당첨번호에 담는다.
 var 보너스번호 = 셔플.pop();
 
