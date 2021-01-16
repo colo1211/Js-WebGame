@@ -94,7 +94,6 @@ function 공색칠하기(숫자,출력할곳){
         // 칸.appendChild(공);
         공색칠하기(보너스번호,칸);
     },7000);
-    결과창.textContent='10초 후에 사라집니다.';
 });
 // // 당첨번호 6개 추출
 // setTimeout(function 콜백함수(){
