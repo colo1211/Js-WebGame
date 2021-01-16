@@ -1,3 +1,4 @@
+
 var 후보군 = Array(45).fill().map(function (element,index){
     return index+1;
 });
@@ -95,3 +96,36 @@ function 공색칠하기(숫자,출력할곳){
         공색칠하기(보너스번호,칸);
     },7000);
 });
+// // 당첨번호 6개 추출
+// setTimeout(function 콜백함수(){
+//     공색칠하기(당첨숫자[0],결과창);
+// },1000);
+// setTimeout(function 콜백함수(){
+//     공색칠하기(당첨숫자[1],결과창);
+// },2000);
+// setTimeout(function 콜백함수(){
+//     공색칠하기(당첨숫자[2],결과창);
+// },3000);
+// setTimeout(function 콜백함수(){
+//     공색칠하기(당첨숫자[3],결과창);
+// },4000);
+// setTimeout(function 콜백함수(){
+//     공색칠하기(당첨숫자[4],결과창);
+// },5000);
+// setTimeout(function 콜백함수(){
+//     공색칠하기(당첨숫자[5],결과창);
+// },6000);
+//
+//
+// //보너스번호 1개 추출
+// setTimeout(function 비동기콜백함수(){
+//     var 칸 = document.getElementsByClassName('보너스결과')[0]; // HTML에서 사용한 class는 여러번 사용 할 수 있기 때문에 하나만 선택하려면 [0]을 입력해준다다
+//     // var 공 = document.createElement('div');
+//     // 공.textContent=보너스번호;
+//     // 공.style.display='inline-block'; // 가로로 출력
+//     // 공.style.border = '1px solid black';
+//     // 공.style.borderRadius ='10px'; //  공을 둥글게, css 에서는 공.style.border-radius라고 하지만 js에서는 -연산자로 인식하기 때문에 -를 제외하고 대문자를 붙인다.
+//     // 공.style.textAlign='center';
+//     // 칸.appendChild(공);
+//     공색칠하기(보너스번호,칸);
+// },7000);
