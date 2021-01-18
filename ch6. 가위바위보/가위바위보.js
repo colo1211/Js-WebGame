@@ -56,8 +56,8 @@ document.querySelectorAll('.btn').forEach(function(btn){
         console.log('나의 선택: ', 나의선택,'      (컴퓨터의 선택): ',컴퓨터_선택);
         // 결론을 낼 때, 딕셔너리 자료구조를 활용한다.
         if(점수표[나의선택]===점수표[컴퓨터_선택]) 결과창.textContent='비겼습니다.';
-        else if (점수표[나의선택]-점수표[컴퓨터_선택]=== -2 || 점수표[나의선택]-점수표[컴퓨터_선택]===1) 결과창.textContent='이김';
-        else if (점수표[나의선택]-점수표[컴퓨터_선택]=== -1 || 점수표[나의선택]-점수표[컴퓨터_선택]===-2) 결과창.textContent='졌습니다';
+        else if ([-2,1].includes(점수표[나의선택]-점수표[컴퓨터_선택])) 결과창.textContent='이김';
+        else if ([-1,-2].includes([나의선택]-점수표[컴퓨터_선택])) 결과창.textContent='졌습니다';
     })
 })
 document.body.append(결과창);
