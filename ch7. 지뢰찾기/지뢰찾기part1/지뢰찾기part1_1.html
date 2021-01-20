@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>지뢰찾기 part1 연습</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        tbody td{
+            border:1px solid black;
+            width:20px;
+            height: 20px;
+            text-align: center;
+            font-weight: bold;
+            /*background-color: yellowgreen;*/
+        }
+
+    </style>
+</head>
+<body>
+    <h1>지뢰찾기 게임</h1>
+    <input id = 'hor' placeholder="가로" value="10">
+    <input id = 'ver' placeholder="세로" value="10">
+    <input id = 'mine' placeholder="지뢰" value="20">
+    <button id = 'btn'>게임시작</button>
+    <table id="table">
+        <thead>
+        <tr>
+            <td><span id ='time'>0초</span></td>
+        </tr>
+        </thead>
+        <tbody>
+<!--테이블이 들어갈 위치 -->
+        </tbody>
+    </table>
+    <script src="지뢰찾기part1_1.js"></script>
+</body>
+</html>
