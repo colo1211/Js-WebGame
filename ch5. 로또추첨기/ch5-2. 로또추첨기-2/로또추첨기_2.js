@@ -51,32 +51,13 @@ function 공세팅(숫자,추가원하는태그){
 
 버튼.addEventListener('click',function (이벤트){
 
-    setTimeout(function 콜백함수(){
-        공세팅(당첨번호[0],결과창);
-    },1000)
-
-    setTimeout(function 콜백함수(){
-        공세팅(당첨번호[1],결과창);
-    },2000)
-
-    setTimeout(function 콜백함수(){
-        공세팅(당첨번호[2],결과창);
-    },3000)
-
-    setTimeout(function 콜백함수(){
-        공세팅(당첨번호[3],결과창);
-    },4000)
-
-    setTimeout(function 콜백함수(){
-        공세팅(당첨번호[4],결과창);
-    },5000)
-
-    setTimeout(function 콜백함수(){
-        공세팅(당첨번호[5],결과창);
-    },6000)
-
-    setTimeout(function 콜백함수(){
-        공세팅(보너스번호,보너스_칸);
-    },7000);
+    for (var i =0; i<당첨번호.length;i++){
+        function 클로저(x){
+            setTimeout(function () {
+                공세팅(당첨번호[x], 결과창);
+            }, (x + 1) * 1000);
+        }
+        클로저(i);
+    }
  });
 document.body.append(버튼);
