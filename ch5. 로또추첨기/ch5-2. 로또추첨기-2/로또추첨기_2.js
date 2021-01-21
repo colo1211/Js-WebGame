@@ -51,13 +51,16 @@ function 공세팅(숫자,추가원하는태그){
 
 버튼.addEventListener('click',function (이벤트){
 
-    for (var i =0; i<당첨번호.length;i++){
+    for (var i =0; i<6;i++){
         function 클로저(x){
             setTimeout(function () {
                 공세팅(당첨번호[x], 결과창);
-            }, (x + 1) * 1000);
+            }, (x) * 1000);
         }
         클로저(i);
     }
  });
+setTimeout(function 콜백함수(){
+    공세팅(보너스번호,보너스_칸);
+},7000);
 document.body.append(버튼);
