@@ -62,13 +62,9 @@ document.querySelector('#exec').addEventListener('click',function (){
                 }
             })
 
-            if (열은칸 === (가로*세로) - 지뢰){
-                중단플래그 = true;
-                document.querySelector('#result').textContent='승리!';
-            }
             // 좌클릭
             td.addEventListener('click',function(이벤트){ //좌클릭 , 펑 or 주변 지뢰 갯수
-                console.log(열은칸, 가로*세로-지뢰);
+                // 이벤트.preventDefault();
                 if (중단플래그 === true) return; // 함수의 종료, 함수가 실행 되지 않는다, 클릭X
 
                 var 부모tr = 이벤트.currentTarget.parentNode; // tr, 클릭된 td가 속한 tr
@@ -76,20 +72,23 @@ document.querySelector('#exec').addEventListener('click',function (){
                 var 줄 = Array.prototype.indexOf.call(부모tbody.children, 이벤트.currentTarget.parentNode); // 화면상 클릭한 곳의 인덱스를 야매로 인덱스로 알아내는 방법
                 var 칸 = Array.prototype.indexOf.call(부모tr.children, 이벤트.currentTarget);
 
+                if (dataset [줄][칸]=== 1 ) return;
+
                 이벤트.currentTarget.classList.add('opened');
+                열은칸+=1;
 
                 if (dataset[줄][칸]==='X'){ // 지뢰일 경우
                     이벤트.currentTarget.textContent='펑';
                     document.querySelector('#result').textContent='실패하였습니다.';
                     중단플래그 = true;
                 }else{ // 지뢰가 아닐 경우
-                    열은칸+=1;
-                    var 주변 = [dataset[줄][칸-1], dataset[줄][칸+1]]; // 위의 3개의 칸, 아래의 3개의 칸은 조건에 따라서 추가한다. (by. concat, push)
-                    if(dataset[줄-1]!==undefined){ // 아래가 존재한다면, datset[줄-1] -> 아래칸 모두 검토
+                    var 주변 = []; // 위의 3개의 칸, 아래의 3개의 칸은 조건에 따라서 추가한다. (by. concat, push)
+                    if(dataset[줄-1]){ // 아래가 존재한다면, datset[줄-1] -> 아래칸 모두 검토
                         // console.log('위가 존재한다면?:',dataset[줄-1]);
                         주변 = 주변.concat(dataset[줄-1][칸-1],dataset[줄-1][칸],dataset[줄-1][칸+1]);
                     }
-                    if(dataset[줄+1]!==undefined) { // 위가 존재한다면, dataset[줄+1] -> 윗칸 모두 검토
+                    주변 = 주변.concat(dataset[줄][칸-1], dataset[줄][칸+1]);
+                    if(dataset[줄+1]) { // 위가 존재한다면, dataset[줄+1] -> 윗칸 모두 검토
                         주변 = 주변.concat(dataset[줄 + 1][칸 - 1], dataset[줄 + 1][칸], dataset[줄 + 1][칸 + 1]);
                     }
                     var 주변지뢰개수= 주변.filter(function (v){
@@ -102,35 +101,39 @@ document.querySelector('#exec').addEventListener('click',function (){
                     dataset[줄][칸]=1; // 열어 놓은 칸에 대해서 data 배열에 1로 저장한다. 열지 않은 칸은 0, 연 칸은 1
 
                     if (주변지뢰개수===0){ // 주변 8칸을 동시에 오픈
-                        var 주변칸 = [tbody.children[줄].children[칸-1],tbody.children[줄].children[칸+1]];
-                      if (tbody.children[줄-1]){
-                          주변칸= 주변칸.concat(tbody.children[줄-1].children[칸-1],
-                                              tbody.children[줄-1].children[칸],
-                                              tbody.children[줄-1].children[칸+1]);
-                      }
-                      if (tbody.children[줄+1]){
-                          주변칸 = 주변칸.concat(tbody.children[줄+1].children[칸-1],
-                                               tbody.children[줄+1].children[칸],
-                                               tbody.children[줄+1].children[칸+1]);
-                      }
-                    }
-                    // console.log('주변칸',주변칸);
-                    // console.log('undefined 제거 :', 주변칸.filter(function(v){return !!v;}));
+                        var 주변칸 = [];
+                        if (tbody.children[줄-1]){
+                            주변칸= 주변칸.concat(tbody.children[줄-1].children[칸-1],
+                                tbody.children[줄-1].children[칸],
+                                tbody.children[줄-1].children[칸+1]);
+                        }
 
-                    //undefine인 주변 칸을 제거.
-                    // 현재 주변 배열에는 undefined, td 등 이상한 값들이 차 있을 수 있다. !!v는 배열 내 undefined를 없애주는 코드
-                   주변칸.filter(function(v) {return !!v;}).forEach(function (옆칸){
-                       var 부모tr = 옆칸.parentNode; // tr, 클릭된 td가 속한 tr
-                       var 부모tbody = 옆칸.parentNode.parentNode;
-                       var 옆칸칸 = Array.prototype.indexOf.call(부모tr.children, 옆칸); // 화면상 클릭한 곳의 인덱스를 야매로 인덱스로 알아내는 방법
-                       var 옆칸줄 = Array.prototype.indexOf.call(부모tbody.children, 부모tr);
-                       if (dataset[옆칸줄][옆칸칸] !== 1 ){ // 1이 아닌 애들만 클릭한다. 쓸모없는 연산의 낭비를 방지하기 위함
-                           옆칸.click();
-                       }// 주변칸들도 눌러주는 코드, 다시 click을 함으로써 이벤트 리스너 함수를 호출한다. 유사 재귀
-                   })
+                        주변칸 = 주변칸.concat(tbody.children[줄].children[칸-1],tbody.children[줄].children[칸+1]);
+
+                        if (tbody.children[줄+1]){
+                            주변칸 = 주변칸.concat(tbody.children[줄+1].children[칸-1],
+                                tbody.children[줄+1].children[칸],
+                                tbody.children[줄+1].children[칸+1]);
+                        }
+                        var 주변칸배열 = 주변칸.filter(function(v) {return !!v;});
+                        console.log(주변칸배열);
+                        주변칸배열.forEach(function (옆칸){
+                            var 부모tr = 옆칸.parentNode; // tr, 클릭된 td가 속한 tr
+                            var 부모tbody = 옆칸.parentNode.parentNode;
+                            var 옆칸칸 = Array.prototype.indexOf.call(부모tr.children, 옆칸); // 화면상 클릭한 곳의 인덱스를 야매로 인덱스로 알아내는 방법
+                            var 옆칸줄 = Array.prototype.indexOf.call(부모tbody.children, 부모tr);
+                            if (dataset[옆칸줄][옆칸칸] !== 1){ // 1이 아닌 애들만 클릭한다. 쓸모없는 연산의 낭비를 방지하기 위함
+                                옆칸.click();
+                            }// 주변칸들도 눌러주는 코드, 다시 click을 함으로써 이벤트 리스너 함수를 호출한다. 유사 재귀
+                        })
+                    }
 
                 }
-                console.log(열은칸, 가로*세로-지뢰);
+                console.log('열은칸',열은칸, 가로*세로-지뢰);
+                if (열은칸 === (가로*세로) - 지뢰){
+                    중단플래그 = true;
+                    document.querySelector('#result').textContent='승리!';
+                }
             });
             tr.appendChild(td);
         }
@@ -146,4 +149,3 @@ document.querySelector('#exec').addEventListener('click',function (){
     }
 
 });
-
