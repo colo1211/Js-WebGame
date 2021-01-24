@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>지뢰찾기복습</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td{
+            border : 1px solid black;
+            width :20px;
+            height:20px;
+            background: #444444;
+            text-align: center;
+        }
+        td.open{
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+    <input id="hor" placeholder="가로" value="10"/>
+    <input id="ver" placeholder="세로" value="10"/>
+    <input id="mine" placeholder="지뢰" value="20"/>
+    <button id="btn">시작</button>
+    <table id="table">
+        <thead>
+        <tr>
+            <td><span id ='timer'>0</span>초</td>
+        </tr>
+        </thead>
+        <tbody>
+<!--        표가 들어갈 부분-->
+        </tbody>
+    </table>
+    <h2 id = 'result'></h2>
+    <script src="지뢰찾기복습.js"> </script>
+</body>
+</html>
