@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>반응속도</title>
+    <style>
+        #screen {
+            height :500px;
+            weight :500px;
+            text-align: center;
+            color: #444444;
+            user-select: none; /*유저의 드래그를 막아준다.*/
+        }
+        #screen.waiting{
+            background: aqua;
+        }
+        #screen.ready{
+            background: red;
+            color: white;
+        }
+        #screen.now{
+            background: yellowgreen;
+        }
+
+    </style>
+</head>
+<body>
+<div id ="screen" class="waiting">
+클릭해서 시작하세요
+</div>
+<!--시작은 waiting 클래스로 시작-->
+<script src="반응속도.js"> </script>
+</body>
+</html>
