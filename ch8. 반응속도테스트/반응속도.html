@@ -5,8 +5,8 @@
     <title>반응속도</title>
     <style>
         #screen {
-            height :500px;
-            weight :500px;
+            height :200px;
+            weight :200px;
             text-align: center;
             color: #444444;
             user-select: none; /*유저의 드래그를 막아준다.*/
@@ -22,12 +22,21 @@
             background: yellowgreen;
         }
 
+        #result{
+            text-align: center;
+        }
+        #title{
+            text-align: center;
+        }
+
     </style>
 </head>
 <body>
+<h1 id="title">반응속도 측정 게임</h1>
 <div id ="screen" class="waiting">
 클릭해서 시작하세요
 </div>
+<h3 id = 'result'></h3>
 <!--시작은 waiting 클래스로 시작-->
 <script src="반응속도.js"> </script>
 </body>
