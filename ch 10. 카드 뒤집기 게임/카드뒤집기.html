@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>카드 뒤집기 게임</title>
+    <style>
+        .card {
+            display : inline-block; /* 세로로 정렬되어 있는 카드를 가로로 정렬 */
+            margin-right: 20px; /*카드가 붙어서 나열되기 때문에 오른쪽 간격 */
+            margin-bottom : 35px;/*카드가 붙어서 나열되기에 아래쪽 간격 */
+            width: 100px;
+            height: 150px;
+            /*border : 1px solid black; 여기서 적용하면 뒤집을 때, 테두리가 그대로 적용 된다.*/
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute; /* 앞과 뒤가 겹쳐진다. */
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border : 1px solid black; /* 여기서 적용하면 뒤집을 때 테두리도 현실감있게 사라졌다가 생긴다. */
+        }
+
+        .card-front{
+            background: gray;
+        }
+
+        .card-back {
+            background: orange;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+<!--<div class ='card'>-->
+<!--    <div class="card-inner">-->
+<!--        <div class ='card-front'>-->
+<!--            앞-->
+<!--        </div>-->
+<!--        <div class ='card-back'>-->
+<!--            뒤-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<script src="카드뒤집기.js"></script>
+</body>
+</html>
